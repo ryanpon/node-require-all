@@ -2,12 +2,9 @@ var fs = require('fs');
 
 module.exports = function requireAll(options) {
   if (typeof options === 'string') {
-    options = {
-      dirname: options,
-      filter: /(.+)\.js(on)?$/,
-      excludeDirs: /^\.(git|svn)$/
-    };
+    options = { dirname: options };
   }
+  options.filter = options.filter || /(.+)\.js(on)?$/;
 
   var files = fs.readdirSync(options.dirname);
   var modules = {};
