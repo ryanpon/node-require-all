@@ -80,3 +80,11 @@ var excludedSvnAndSub = requireAll({
 assert.equal(excludedSvnAndSub['.svn'], undefined);
 assert.ok(excludedSvnAndSub.root);
 assert.equal(excludedSvnAndSub.sub, undefined);
+
+var noRecursive = requireAll({
+  dirname: __dirname + '/filterdir',
+  noRecursive: true
+});
+
+assert(noRecursive.root);
+assert(!noRecursive.sub);

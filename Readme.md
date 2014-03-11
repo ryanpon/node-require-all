@@ -8,7 +8,8 @@ An easy way to require all files within a directory.
 var controllers = require('require-all')({
   dirname     :  __dirname + '/controllers',
   filter      :  /(.+Controller)\.js$/,
-  excludeDirs :  /^\.(git|svn)$/
+  excludeDirs :  /^\.(git|svn)$/,
+  noRecursive : true    // don't look at subdirectories at all
 });
 
 // controllers now is an object with references to all modules matching the filter
