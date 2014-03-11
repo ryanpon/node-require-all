@@ -5,6 +5,7 @@ module.exports = function requireAll(options) {
     options = { dirname: options };
   }
   options.filter = options.filter || /(.+)\.js(on)?$/;
+  options.noRecursive = options.noRecursive || false;
 
   var files = fs.readdirSync(options.dirname);
   var modules = {};
@@ -15,7 +16,7 @@ module.exports = function requireAll(options) {
 
   files.forEach(function (file) {
     var filepath = options.dirname + '/' + file;
-    if (fs.statSync(filepath).isDirectory()) {
+    if (fs.statSync(filepath).isDirectory() && !options.noRecursive) {
 
       if (excludeDirectory(file)) return;
 
